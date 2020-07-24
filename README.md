@@ -21,6 +21,10 @@ app.kubernetes.io/name: argocd-server
   - --insecure
 ```
 
+### (GCP) add ip-masq-agent
+
+[Check ip masquerade agent](deploy/ip-masq-agent/README.md)
+
 # Access
 
 Init password
