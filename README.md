@@ -41,4 +41,33 @@ argocd account update-password
 Password updated
 ```
 
+---
+
+# App
+
+Create app
+```
+APP=argocd
+REPOSITORY=
+MANEFEST_PATH=
+argocd app create ${APP} \
+  --repo ${REPOSITORY} \
+  --path ${MANAFEST_PATH} \
+  --dest-server https://kubernetes.default.svc \
+  --dest-namespace default
+
+argocd app get ${APP}
+argocd app sync ${APP}
+```
+
+# Cluster
+
+```
+argocd cluster add
+CONTEXT=
+argocd cluster add ${CONTEXT}
+```
+
+Check firewall rules to make sure the remote cluster is reachable
+
 #
