@@ -1,4 +1,5 @@
 # This is an auto-generated file. DO NOT EDIT
+#wget -O deploy/install.yaml https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
@@ -2412,6 +2413,20 @@ spec:
             port: 8082
           initialDelaySeconds: 5
           periodSeconds: 10
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: cloud.google.com/gke-nodepool
+                operator: In
+                values:
+                  - preemptible
+      tolerations:
+      - key: "preemptible"
+        operator: "Equal"
+        value: "true"
+        effect: "PreferNoSchedule"
       serviceAccountName: argocd-application-controller
 ---
 apiVersion: apps/v1
@@ -2457,6 +2472,20 @@ spec:
         volumeMounts:
         - mountPath: /shared
           name: static-files
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: cloud.google.com/gke-nodepool
+                operator: In
+                values:
+                  - preemptible
+      tolerations:
+      - key: "preemptible"
+        operator: "Equal"
+        value: "true"
+        effect: "PreferNoSchedule"
       serviceAccountName: argocd-dex-server
       volumes:
       - emptyDir: {}
@@ -2490,6 +2519,20 @@ spec:
         name: redis
         ports:
         - containerPort: 6379
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: cloud.google.com/gke-nodepool
+                operator: In
+                values:
+                  - preemptible
+      tolerations:
+      - key: "preemptible"
+        operator: "Equal"
+        value: "true"
+        effect: "PreferNoSchedule"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -2536,6 +2579,20 @@ spec:
           name: ssh-known-hosts
         - mountPath: /app/config/tls
           name: tls-certs
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: cloud.google.com/gke-nodepool
+                operator: In
+                values:
+                  - preemptible
+      tolerations:
+      - key: "preemptible"
+        operator: "Equal"
+        value: "true"
+        effect: "PreferNoSchedule"
       volumes:
       - configMap:
           name: argocd-ssh-known-hosts-cm
@@ -2590,6 +2647,20 @@ spec:
           name: ssh-known-hosts
         - mountPath: /app/config/tls
           name: tls-certs
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: cloud.google.com/gke-nodepool
+                operator: In
+                values:
+                  - preemptible
+      tolerations:
+      - key: "preemptible"
+        operator: "Equal"
+        value: "true"
+        effect: "PreferNoSchedule"
       serviceAccountName: argocd-server
       volumes:
       - emptyDir: {}

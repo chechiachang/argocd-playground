@@ -5,8 +5,6 @@ Argo CD
 
 ```
 kubectl create namespace argocd
-wget -O deploy/install.yaml https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-
 kubectl apply -n argocd -f deploy/
 ```
 
@@ -21,6 +19,26 @@ app.kubernetes.io/name: argocd-server
   - --insecure
 ```
 
+### Affinity & tolerations
+
+```
+affinity:
+  nodeAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 1
+      preference:
+        matchExpressions:
+        - key: cloud.google.com/gke-nodepool
+          operator: In
+          values:
+          - preemptible
+tolerations:
+- key: "preemptible"
+  operator: "Equal"
+  value: "true"
+  effect: "PreferNoSchedule"
+```
+
 ### (GCP) add ip-masq-agent
 
 [Check ip masquerade agent](deploy/ip-masq-agent/README.md)
@@ -29,7 +47,7 @@ app.kubernetes.io/name: argocd-server
 
 Init password
 ```
-SERVER_HOST=
+SERVER_HOST=argocd.chechia.net
 PASSWORD=$(kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)
 
 argocd login ${SERVER_HOST} --plaintext --grpc-web --username admin --password ${PASSWORD}
@@ -73,5 +91,3 @@ argocd cluster add ${CONTEXT}
 ```
 
 Check firewall rules to make sure the remote cluster is reachable
-
-#
