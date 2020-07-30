@@ -2415,13 +2415,21 @@ spec:
           periodSeconds: 10
       affinity:
         nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: cloud.google.com/gke-nodepool
-                operator: In
-                values:
-                  - preemptible
+          #requiredDuringSchedulingIgnoredDuringExecution:
+          #  nodeSelectorTerms:
+          #  - matchExpressions:
+          #    - key: cloud.google.com/gke-nodepool
+          #      operator: In
+          #      values:
+          #        - preemptible
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+                - key: cloud.google.com/gke-nodepool
+                  operator: In
+                  values:
+                    - preemptible
       tolerations:
       - key: "preemptible"
         operator: "Equal"
@@ -2474,13 +2482,21 @@ spec:
           name: static-files
       affinity:
         nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: cloud.google.com/gke-nodepool
-                operator: In
-                values:
-                  - preemptible
+          #requiredDuringSchedulingIgnoredDuringExecution:
+          #  nodeSelectorTerms:
+          #  - matchExpressions:
+          #    - key: cloud.google.com/gke-nodepool
+          #      operator: In
+          #      values:
+          #        - preemptible
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+                - key: cloud.google.com/gke-nodepool
+                  operator: In
+                  values:
+                    - preemptible
       tolerations:
       - key: "preemptible"
         operator: "Equal"
@@ -2521,13 +2537,21 @@ spec:
         - containerPort: 6379
       affinity:
         nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: cloud.google.com/gke-nodepool
-                operator: In
-                values:
-                  - preemptible
+          #requiredDuringSchedulingIgnoredDuringExecution:
+          #  nodeSelectorTerms:
+          #  - matchExpressions:
+          #    - key: cloud.google.com/gke-nodepool
+          #      operator: In
+          #      values:
+          #        - preemptible
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+                - key: cloud.google.com/gke-nodepool
+                  operator: In
+                  values:
+                    - preemptible
       tolerations:
       - key: "preemptible"
         operator: "Equal"
@@ -2581,13 +2605,21 @@ spec:
           name: tls-certs
       affinity:
         nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: cloud.google.com/gke-nodepool
-                operator: In
-                values:
-                  - preemptible
+          #requiredDuringSchedulingIgnoredDuringExecution:
+          #  nodeSelectorTerms:
+          #  - matchExpressions:
+          #    - key: cloud.google.com/gke-nodepool
+          #      operator: In
+          #      values:
+          #        - preemptible
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+                - key: cloud.google.com/gke-nodepool
+                  operator: In
+                  values:
+                    - preemptible
       tolerations:
       - key: "preemptible"
         operator: "Equal"
@@ -2649,13 +2681,21 @@ spec:
           name: tls-certs
       affinity:
         nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: cloud.google.com/gke-nodepool
-                operator: In
-                values:
-                  - preemptible
+          #requiredDuringSchedulingIgnoredDuringExecution:
+          #  nodeSelectorTerms:
+          #  - matchExpressions:
+          #    - key: cloud.google.com/gke-nodepool
+          #      operator: In
+          #      values:
+          #        - preemptible
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+                - key: cloud.google.com/gke-nodepool
+                  operator: In
+                  values:
+                    - preemptible
       tolerations:
       - key: "preemptible"
         operator: "Equal"
